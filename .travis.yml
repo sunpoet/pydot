@@ -1,0 +1,19 @@
+language: python
+
+addons:
+  apt:
+    packages:
+      - graphviz
+
+install:
+  - pip install -U pip setuptools
+  - pip install -r requirements.txt
+  - pip install .
+
+script:
+  - cd tests/
+  - nosetests --with-coverage --cover-package=pydot
+
+after_success:
+  - coveralls
+
