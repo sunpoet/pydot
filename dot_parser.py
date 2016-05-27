@@ -111,7 +111,7 @@ def push_top_graph_stmt(str, loc, toks):
             add_elements(g, element)
 
         else:
-            raise ValueError, "Unknown element statement: %r " % element
+            raise ValueError("Unknown element statement: %r " % element)
 
 
     for g in top_graphs:
@@ -218,14 +218,14 @@ def add_elements(g, toks, defaults_graph=None, defaults_node=None, defaults_edge
                 defaults_edge.update(element.attrs)
 
             else:
-                raise ValueError, "Unknown DefaultStatement: %s " % element.default_type
+                raise ValueError("Unknown DefaultStatement: %s " % element.default_type)
 
         elif isinstance(element, P_AttrList):
 
             g.obj_dict['attributes'].update(element.attrs)
 
         else:
-            raise ValueError, "Unknown element statement: %r" % element
+            raise ValueError("Unknown element statement: %r" % element)
 
 
 def push_graph_stmt(str, loc, toks):
@@ -267,7 +267,7 @@ def push_default_stmt(str, loc, toks):
     if default_type in ['graph', 'node', 'edge']:
         return DefaultStatement(default_type, attrs)
     else:
-        raise ValueError, "Unknown default statement: %r " % toks
+        raise ValueError("Unknown default statement: %r " % toks)
 
 
 def push_attr_list(str, loc, toks):
@@ -524,9 +524,9 @@ def parse_dot_data(data):
         else:
             return [g for g in tokens]
 
-    except ParseException, err:
+    except ParseException as err:
 
-        print err.line
-        print " "*(err.column-1) + "^"
-        print err
+        print(err.line)
+        print(" "*(err.column-1) + "^")
+        print(err)
         return None
